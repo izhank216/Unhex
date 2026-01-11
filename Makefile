@@ -10,17 +10,11 @@ bin/unhex:
 	mkdir -p bin
 	$(CC) $(CFLAGS) src/unhex.c -o bin/unhex $(PY_INC) $(PY_LIB) $(LDFLAGS)
 
-python/Hex.c: python/Hex.pyx
-	cython -3 -f -o python/Hex.c python/Hex.pyx
+python/Hex.so: python/Hex.py
+	python3 -m nuitka --module --output-dir=python python/Hex.py
 
-python/View.c: python/View.pyx
-	cython -3 -f -o python/View.c python/View.pyx
-
-python/Hex.so: python/Hex.c
-	$(CC) -O2 -fPIC -shared python/Hex.c -o python/Hex.so $(PY_INC) $(PY_LIB)
-
-python/View.so: python/View.c
-	$(CC) -O2 -fPIC -shared python/View.c -o python/View.so $(PY_INC) $(PY_LIB)
+python/View.so: python/View.py
+	python3 -m nuitka --module --output-dir=python python/View.py
 
 clean:
-	rm -rf bin python/*.so python/*.c python/__pycache__
+	rm -rf bin python/*.so python/__pycache__
