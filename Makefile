@@ -1,6 +1,6 @@
 CC=gcc
-CFLAGS=-O2
-LDFLAGS=-lncurses -lm
+CFLAGS=-O2 -static
+LDFLAGS=-lncurses -lm -ldl -static
 
 all: bin/unhex
 
