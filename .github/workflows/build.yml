@@ -10,7 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install deps
-        run: sudo apt-get update && sudo apt-get install -y gcc make python3-dev libncurses5-dev libncursesw5-dev
+        run: sudo apt-get update && sudo apt-get install -y gcc make python3-dev libncurses5-dev libncursesw5-dev 
+      - name: Install python deps
+        run: sudo pip install cython
       - name: Build
         run: make all
       - name: Upload artifacts
