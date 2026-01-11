@@ -11,10 +11,10 @@ bin/unhex:
 	$(CC) $(CFLAGS) src/unhex.c -o bin/unhex $(PY_CFLAGS) $(PY_LDFLAGS) $(LDFLAGS)
 
 python/Hex.so:
-	$(CC) -fPIC $(PY_CFLAGS) python/Hex.py -shared -o python/Hex.so $(PY_LDFLAGS)
+	cython --embed -3 --cplus python/Hex.py -o python/Hex.so
 
 python/View.so:
-	$(CC) -fPIC $(PY_CFLAGS) python/View.py -shared -o python/View.so $(PY_LDFLAGS)
+	cython --embed -3 --cplus python/View.py -o python/View.so
 
 clean:
-	rm -rf bin python/*.so
+	rm -rf bin python/*.so python/*.c
