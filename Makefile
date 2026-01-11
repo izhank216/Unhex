@@ -10,11 +10,11 @@ bin/unhex:
 	mkdir -p bin
 	$(CC) $(CFLAGS) src/unhex.c -o bin/unhex $(PY_INC) $(PY_LIB) $(LDFLAGS)
 
-python/Hex.c: python/Hex.py
-	cython -3 -f -o python/Hex.c python/Hex.py
+python/Hex.c: python/Hex.pyx
+	cython -3 -f -o python/Hex.c python/Hex.pyx
 
-python/View.c: python/View.py
-	cython -3 -f -o python/View.c python/View.py
+python/View.c: python/View.pyx
+	cython -3 -f -o python/View.c python/View.pyx
 
 python/Hex.so: python/Hex.c
 	$(CC) -O2 -fPIC -shared python/Hex.c -o python/Hex.so $(PY_INC) $(PY_LIB)
