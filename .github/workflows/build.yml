@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: deps
+      - name: Install deps
         run: sudo apt-get update && sudo apt-get install -y gcc make python3-dev libncurses5-dev libncursesw5-dev
-      - name: build
-        run: make
-      - name: upload artifacts
+      - name: Build
+        run: make all
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: unhex-build
