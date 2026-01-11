@@ -10,9 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install deps
-        run: sudo apt-get update && sudo apt-get install -y gcc make python3-dev libncurses5-dev libncursesw5-dev 
-      - name: Install python deps
-        run: sudo python3 -m pip install -r requirements.txt
+        run: sudo apt-get update && sudo apt-get install -y gcc make libncurses5-dev libncursesw5-dev 
       - name: Build
         run: make all
       - name: Upload artifacts
@@ -21,4 +19,3 @@ jobs:
           name: unhex-build
           path: |
             bin/unhex
-            python/*.so
